@@ -16,6 +16,7 @@ const withAuth =
         return;
       }
     }, [session]);
+
     return (
       <div>
         <Login />
