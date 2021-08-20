@@ -11,6 +11,7 @@ export default function SignIn({ providers }) {
       router.replace("/");
     }
   }, [session]);
+
   return (
     <div>
       <div>Task History Tool</div>
