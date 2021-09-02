@@ -3,6 +3,10 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { getProviders, useSession, signIn, providers } from "next-auth/client";
 
+const EmojiLogo = styled.span`
+  font-size: 4rem;
+`;
+
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -51,6 +55,7 @@ export default function SignIn({}) {
   return (
     <Container>
       <SignInBox>
+        <EmojiLogo>🕰</EmojiLogo>
         <h2>Task History Tool</h2>
         <div>
           <ConnectButton onClick={() => signIn("asana")}>

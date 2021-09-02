@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import SecretsManager from "aws-";
 import Cryptr from "cryptr";
 
 export default NextAuth({
