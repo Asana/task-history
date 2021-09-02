@@ -50,7 +50,6 @@ export default NextAuth({
         token.accessToken = cryptr.encrypt(account.accessToken);
       }
       // Also encrypt firstname for fun
-      console.log(account);
       if (account?.data?.name) {
         const cryptr = new Cryptr(process.env.NEXT_ENCRYPTION_KEY);
         token.name = cryptr.encrypt(account.data.name);
