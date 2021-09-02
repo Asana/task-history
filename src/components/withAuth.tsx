@@ -15,7 +15,7 @@ const withAuth =
         Router.replace("/signin");
         return;
       }
-    }, [session]);
+    }, []);
 
     return (
       <div>
