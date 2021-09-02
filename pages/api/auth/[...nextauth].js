@@ -1,4 +1,5 @@
 import NextAuth from "next-auth";
+import SecretsManager from "aws-";
 import Cryptr from "cryptr";
 
 export default NextAuth({
@@ -49,6 +50,12 @@ export default NextAuth({
         const cryptr = new Cryptr(process.env.NEXT_ENCRYPTION_KEY);
         token.accessToken = cryptr.encrypt(account.accessToken);
       }
+      // Also encrypt firstname for fun
+      console.log(account);
+      if (account?.data?.name) {
+        const cryptr = new Cryptr(process.env.NEXT_ENCRYPTION_KEY);
+        token.name = cryptr.encrypt(account.data.name);
+      }
       return token;
     },
 
@@ -63,6 +70,7 @@ export default NextAuth({
       // Add access_token to session
       const cryptr = new Cryptr(process.env.NEXT_ENCRYPTION_KEY);
       session.accessToken = cryptr.decrypt(token.accessToken);
+      session.user.name = cryptr.decrypt(token.name);
       return session;
     },
   },

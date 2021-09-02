@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useSession } from "next-auth/client";
 import type { NextPage } from "next";
-import { Login } from "./Login";
+import { Header } from "./Header";
 
 const withAuth =
   <P extends object>(WrappedComponent: NextPage<P>): React.FC<P> =>
@@ -19,7 +19,7 @@ const withAuth =
 
     return (
       <div>
-        <Login />
+        <Header />
         <WrappedComponent {...(props as P)} />
       </div>
     );
