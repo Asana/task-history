@@ -23,6 +23,7 @@ export default NextAuth({
         return {
           id: profile.data.gid,
           name: profile.data?.name,
+          image: profile.data?.photo.image_128x128,
         };
       },
       clientId: process.env.NEXT_CLIENT_ID,
@@ -53,6 +54,9 @@ export default NextAuth({
       if (account?.data?.name) {
         const cryptr = new Cryptr(process.env.NEXT_ENCRYPTION_KEY);
         token.name = cryptr.encrypt(account.data.name);
+        if (account.data.image) {
+          token.image = cryptr.encrypt(account.data.image);
+        }
       }
       return token;
     },
@@ -69,6 +73,9 @@ export default NextAuth({
       const cryptr = new Cryptr(process.env.NEXT_ENCRYPTION_KEY);
       session.accessToken = cryptr.decrypt(token.accessToken);
       session.user.name = cryptr.decrypt(token.name);
+      if (token.image) {
+        session.user.image = cryptr.decrypt(token.image);
+      }
       return session;
     },
   },

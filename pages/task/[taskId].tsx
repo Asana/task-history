@@ -7,6 +7,7 @@ import { getTaskHistory } from "../../src/utils/getTaskHistory";
 import TaskDisplay from "../../src/components/TaskDisplay";
 import Timeline from "../../src/components/Timeline";
 import styled from "styled-components";
+import { Header } from "../../src/components/Header";
 
 const TaskHistoryWrapper = styled.div`
   display: flex;
@@ -27,7 +28,10 @@ const Task: NextPage = () => {
 
   useEffect(() => {
     if (typeof taskId !== "string" || taskId === "") {
-      router.replace("/");
+      console.log("error! we have task id");
+      console.log(typeof taskId);
+      console.log(taskId);
+      //router.replace("/");
     } else {
       setLoading(true);
       if (typeof session?.accessToken === "string") {
@@ -38,7 +42,7 @@ const Task: NextPage = () => {
             setCurrentTaskData(newData.taskHistory.get("today"));
             setLoading(false);
           } else {
-            router.replace("/");
+            console.log("error!");
           }
         });
       } else setLoading(false);
@@ -59,24 +63,27 @@ const Task: NextPage = () => {
   };
 
   const backButtonHandler = () => {
-    router.push("/");
+    //router.push("/");
   };
 
   if (loading) return <div>loading...</div>;
 
   return (
-    <TaskHistoryWrapper>
-      <TaskDisplay
-        currentTaskData={currentTaskData}
-        latestDate={latestDate}
-        backFunction={backButtonHandler}
-      />
-      <Timeline
-        currentStoryGid={currentStoryGid}
-        selectNewStory={setCurrentStoryHandler}
-        stories={stories}
-      />
-    </TaskHistoryWrapper>
+    <>
+      <Header />
+      <TaskHistoryWrapper>
+        <TaskDisplay
+          currentTaskData={currentTaskData}
+          latestDate={latestDate}
+          backFunction={backButtonHandler}
+        />
+        <Timeline
+          currentStoryGid={currentStoryGid}
+          selectNewStory={setCurrentStoryHandler}
+          stories={stories}
+        />
+      </TaskHistoryWrapper>
+    </>
   );
 };
 

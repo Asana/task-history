@@ -12,17 +12,12 @@ const withAuth =
 
     useEffect(() => {
       if (typeof session?.accessToken !== "string") {
-        Router.replace("/signin");
+        Router.replace("/");
         return;
       }
     }, []);
 
-    return (
-      <div>
-        <Header />
-        <WrappedComponent {...(props as P)} />
-      </div>
-    );
+    return <WrappedComponent {...(props as P)} />;
   };
 
 export default withAuth;

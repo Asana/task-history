@@ -48,7 +48,7 @@ export default function SignIn({}) {
 
   useEffect(() => {
     if (session) {
-      router.replace("/");
+      router.replace("/home");
     }
   }, [session]);
 
