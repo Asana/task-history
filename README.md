@@ -23,6 +23,7 @@ Take note of the Client ID and Client Secret. We also need to provide a redirect
 To allow the code here to act as the app you just created, create a `.env.local` file in the root directory, and provide the following:
 
 ```
+NEXT_AUTH_URL=base url for auth redirect, for development this should be [http://localhost:3000]
 NEXT_CLIENT_SECRET=client secret from the app you created above
 NEXT_CLIENT_ID=client id from the app you created above
 NEXT_ENCRYPTION_KEY=long random string for encrypting the cookie that gets saved to the browser
@@ -85,4 +86,4 @@ To deploy this app on AWS Amplify, first:
 1 - Fork this repository, and make sure you follow the overview getting started above and have tested it locally.
 2 - Commit this to a new repository on Github. Do not commit your .env.local file
 5 - Log in to AWS Amplify console. Create a new app, and add a frontend from Github following the latter half of [this flow](https://docs.amplify.aws/guides/hosting/nextjs/q/platform/js/#deploy-and-host-a-hybrid-app-ssg-and-ssr). You shouldn't need the Amplify CLI.
-4 - Add the environment variables in just as you have them above in the .env.local. These are not, and should not, be used in any frontend code, and so are echoed to the next app when building the backend. That echo is done in the .amplify.yml file above, along with other build settings.
+4 - Add the environment variables in just as you have them above in the .env.local. These are not, and should not, be used in any frontend code, and so are echoed to the next app when building the backend. That echo is done in the .amplify.yml file above, along with other build settings. The `NEXT_AUTH_URL` environment variable should be the same as the Production branch URL under App Settings > General > App Details in the AWS console.
