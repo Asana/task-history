@@ -63,26 +63,28 @@ const Task: NextPage = () => {
   };
 
   const backButtonHandler = () => {
-    //router.push("/");
+    router.push("/home");
   };
-
-  if (loading) return <div>loading...</div>;
 
   return (
     <>
       <Header />
-      <TaskHistoryWrapper>
-        <TaskDisplay
-          currentTaskData={currentTaskData}
-          latestDate={latestDate}
-          backFunction={backButtonHandler}
-        />
-        <Timeline
-          currentStoryGid={currentStoryGid}
-          selectNewStory={setCurrentStoryHandler}
-          stories={stories}
-        />
-      </TaskHistoryWrapper>
+      {loading ? (
+        <div>loading...</div>
+      ) : (
+        <TaskHistoryWrapper>
+          <TaskDisplay
+            currentTaskData={currentTaskData}
+            latestDate={latestDate}
+            backFunction={backButtonHandler}
+          />
+          <Timeline
+            currentStoryGid={currentStoryGid}
+            selectNewStory={setCurrentStoryHandler}
+            stories={stories}
+          />
+        </TaskHistoryWrapper>
+      )}
     </>
   );
 };

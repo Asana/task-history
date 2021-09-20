@@ -1,7 +1,4 @@
 import type { NextPage } from "next";
-import { useEffect } from "react";
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import TaskForm from "../src/components/TaskForm";
@@ -31,7 +28,7 @@ const Home: NextPage = () => {
     <HomeContainer>
       <Header />
 
-      <main className={styles.main}>
+      <main>
         <TaskForm setTaskId={handleTaskIdChange} />
       </main>
     </HomeContainer>
