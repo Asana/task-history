@@ -76,7 +76,7 @@ It is also built to be deployed on [AWS Amplify](https://aws.amazon.com/amplify/
 -next-env.d.ts - Next+typescript settings
 -next-config.js - Next+react setting
 -package.json - dependencies listing
--Readme
+-README.md
 -tsconfig.json - more typescript settings 😊
 ```
 
