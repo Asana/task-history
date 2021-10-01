@@ -1,20 +1,11 @@
 import type { NextPage } from "next";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import TaskForm from "../src/components/TaskForm";
-import withAuth from "../src/components/withAuth";
 import { Header } from "../src/components/Header";
-import styled from "styled-components";
 
-const HomeContainer = styled.div`
-  display: flex;
-  min-height: 100vh;
-  min-width: 100vw;
-  flex-direction: column;
-`;
-
-const Home: NextPage = () => {
-  const [session, sessionLoading] = useSession();
+const Home: NextPage & { auth: boolean } = () => {
+  const { data: session } = useSession();
   const router = useRouter();
 
   const handleTaskIdChange = async (id: string) => {
@@ -25,14 +16,16 @@ const Home: NextPage = () => {
   };
 
   return (
-    <HomeContainer>
+    <div className="container flex-col">
       <Header />
 
       <main>
         <TaskForm setTaskId={handleTaskIdChange} />
       </main>
-    </HomeContainer>
+    </div>
   );
 };
 
-export default withAuth(Home);
+Home.auth = true;
+
+export default Home;

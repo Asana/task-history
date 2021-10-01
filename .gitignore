@@ -30,6 +30,9 @@ package-lock.json
 #next
 .next
 
+# local dev https certs:
+/certificates
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
